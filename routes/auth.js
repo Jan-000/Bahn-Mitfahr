@@ -8,33 +8,6 @@ const mongoose = require("mongoose");
 // How many rounds should bcrypt run the salt (default [10 - 12 rounds])
 const saltRounds = 10;
 
-// // Require the User and Group model in order to interact with the database
-// const User = require
-// const Group = require
-
-
-// // handles session/cookies
-// const session = require('express-session');
-// module.exports = User
-
-// // required for the app when deployed to Heroku (in production)
-//   User.set('trust proxy', 1);
-
-// // using session
-// User.use(
-//   session({
-//     secret: process.env.SESSION_SECRET ,
-//     resave: true,
-//     saveUninitialized: false,
-//     cookie: {
-//       sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
-//       secure: process.env.NODE_ENV === 'production',
-//       httpOnly: true,
-//       maxAge: 60000 * 60 // 60 * 1000 ms === 1 min
-//     }
-//   })
-// );
-
 // Require necessary (isLoggedOut and isLiggedIn) middleware in order to control access to specific routes
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
@@ -42,23 +15,25 @@ const res = require("express/lib/response");
 const { findById } = require("../models/User");
 
 // SIGNUP
-router.get("/signup", isLoggedOut, (req, res) => {
+router.get("/signup", (req, res) => {
   res.render("auth/signup");
 });
 
-router.post("/signup", isLoggedOut, (req, res) => {
-  const { username, password } = req.body;
+router.post("/signup", (req, res) => {
+  const { email, password } = req.body;
 
-  if (!username) {
-    return res
+  if (!email) {
+     res
       .status(400)
-      .render("auth/signup", { errorMessage: "Please provide your username." });
+      .render("auth/signup", { errorMessage: "Please provide your email." });
+      return
   }
 
-  if (password.length < 8) {
-    return res.status(400).render("auth/signup", {
+  if (password.length <= 7) {
+     res.status(400).render("auth/signup", {
       errorMessage: "Your password needs to be at least 8 characters long.",
-    });
+    })
+    return;
   }
 
   //   ! This use case is using a regular expression to control for special characters and min length
@@ -73,23 +48,25 @@ router.post("/signup", isLoggedOut, (req, res) => {
   }
   */
 
-  // Search the database for a user with the username submitted in the form
-  User.findOne({ username }).then((found) => {
-    // If the user is found, send the message username is taken
+  // Search the database for a user with the email submitted in the form
+  email.findOne({ email })
+  .then((found) => {
+    // If the email is found, send the message email is taken
     if (found) {
-      return res
+       res
         .status(400)
-        .render("auth.signup", { errorMessage: "Username already taken." });
-    }
-
+        .render("auth/signup", { errorMessage: "email already taken." });
+        return}
+ 
     // if user is not found, create a new user - start with hashing the password
     return bcrypt
       .genSalt(saltRounds)
       .then((salt) => bcrypt.hash(password, salt))
       .then((hashedPassword) => {
         // Create a user and save it in the database
-        return User.create({
-          username,
+        console.log("password gets hashed");
+         User.create({
+          email,
           password: hashedPassword,
         });
       })
@@ -107,7 +84,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
         if (error.code === 11000) {
           return res.status(400).render("auth/signup", {
             errorMessage:
-              "Username need to be unique. The username you chose is already in use.",
+              "email need to be unique. The email you chose is already in use.",
           });
         }
         return res
@@ -129,7 +106,7 @@ router.post("/login", (req, res, next) => {
   if (!email) {
     return res
       .status(400)
-      .render("auth/login", { errorMessage: "Please provide your username." });
+      .render("auth/login", { errorMessage: "Please provide your email." });
   }
 
   // Here we use the same logic as above
@@ -140,7 +117,7 @@ router.post("/login", (req, res, next) => {
     });
   }
 
-  // Search the database for a user with the username submitted in the form
+  // Search the database for a user with the email submitted in the form
   User.findOne({ email })
     .then((user) => {
       // If the user isn't found, send the message that user provided wrong credentials
@@ -150,7 +127,7 @@ router.post("/login", (req, res, next) => {
           .render("auth/login", { errorMessage: "Wrong credentials." });
       }
 
-      // If user is found based on the username, check if the in putted password matches the one saved in the database
+      // If user is found based on the email, check if the in putted password matches the one saved in the database
       bcrypt.compare(password, user.password).then((isSamePassword) => {
         if (!isSamePassword) {
           return res
