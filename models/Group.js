@@ -6,11 +6,7 @@ const User = require('./User');
 const groupSchema = new Schema({
   startStation: String,
   endStation: String,
-  date: {
-    day: Number,
-    month: Number,
-    year: Number
-  },
+  date: Date,
   startTime: {
     minute : Number,
     hour: Number,

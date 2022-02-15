@@ -19,22 +19,27 @@ router.get("/signup", (req, res) => {
   res.render("auth/signup");
 });
 
+
 router.post("/signup", (req, res) => {
   const { email, password } = req.body;
+  console.log(req.body)
+  
+  res.redirect('/groupsearchUrl')
 
-  if (!email) {
-     res
-      .status(400)
-      .render("auth/signup", { errorMessage: "Please provide your email." });
-      return
-  }
 
-  if (password.length <= 7) {
-     res.status(400).render("auth/signup", {
-      errorMessage: "Your password needs to be at least 8 characters long.",
-    })
-    return;
-  }
+  // if (!email) {
+  //    res
+  //     .status(400)
+  //     .render("auth/signup", { errorMessage: "Please provide your email." });
+  //     return
+  // }
+
+  // if (password.length <= 7) {
+  //    res.status(400).render("auth/signup", {
+  //     errorMessage: "Your password needs to be at least 8 characters long.",
+  //   })
+  //   return;
+  // }
 
   //   ! This use case is using a regular expression to control for special characters and min length
   /*
@@ -48,50 +53,50 @@ router.post("/signup", (req, res) => {
   }
   */
 
-  // Search the database for a user with the email submitted in the form
-  email.findOne({ email })
-  .then((found) => {
-    // If the email is found, send the message email is taken
-    if (found) {
-       res
-        .status(400)
-        .render("auth/signup", { errorMessage: "email already taken." });
-        return}
+  // // Search the database for a user with the email submitted in the form
+  // email.findOne({ email })
+  // .then((found) => {
+  //   // If the email is found, send the message email is taken
+  //   if (found) {
+  //      res
+  //       .status(400)
+  //       .render("auth/signup", { errorMessage: "email already taken." });
+  //       return}
  
-    // if user is not found, create a new user - start with hashing the password
-    return bcrypt
-      .genSalt(saltRounds)
-      .then((salt) => bcrypt.hash(password, salt))
-      .then((hashedPassword) => {
-        // Create a user and save it in the database
-        console.log("password gets hashed");
-         User.create({
-          email,
-          password: hashedPassword,
-        });
-      })
-      .then((user) => {
-        // Bind the user to the session object
-        req.session.user = user;
-        res.redirect("/");
-      })
-      .catch((error) => {
-        if (error instanceof mongoose.Error.ValidationError) {
-          return res
-            .status(400)
-            .render("auth/signup", { errorMessage: error.message });
-        }
-        if (error.code === 11000) {
-          return res.status(400).render("auth/signup", {
-            errorMessage:
-              "email need to be unique. The email you chose is already in use.",
-          });
-        }
-        return res
-          .status(500)
-          .render("auth/signup", { errorMessage: error.message });
-      });
-  });
+  //   // if user is not found, create a new user - start with hashing the password
+  //   return bcrypt
+  //     .genSalt(saltRounds)
+  //     .then((salt) => bcrypt.hash(password, salt))
+  //     .then((hashedPassword) => {
+  //       // Create a user and save it in the database
+  //       console.log("password gets hashed");
+  //        User.create({
+  //         email,
+  //         password: hashedPassword,
+  //       });
+  //     })
+  //     .then((user) => {
+  //       // Bind the user to the session object
+  //       req.session.user = user;
+  //       res.redirect("/");
+  //     })
+  //     .catch((error) => {
+  //       if (error instanceof mongoose.Error.ValidationError) {
+  //         return res
+  //           .status(400)
+  //           .render("auth/signup", { errorMessage: error.message });
+  //       }
+  //       if (error.code === 11000) {
+  //         return res.status(400).render("auth/signup", {
+  //           errorMessage:
+  //             "email need to be unique. The email you chose is already in use.",
+  //         });
+  //       }
+  //       return res
+  //         .status(500)
+  //         .render("auth/signup", { errorMessage: error.message });
+  //     });
+  // });
 });
 //________________________________________________________________________________________
 
