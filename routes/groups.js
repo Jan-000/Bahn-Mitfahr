@@ -4,7 +4,10 @@ const User = require('../models/User');
 const Group = require('../models/Group');
 
 router.get('/create', (req, res, next) => {
-    res.render('groups/creation.hbs')
+    User.findById(req.session.user._id).then(user=>{res.render('groups/creation.hbs', {user})
+    })
+    //console.log(req.session.user._id)
+    
 });
 
 
@@ -14,10 +17,11 @@ router.post('/', (req, res) =>{
     
 
 	const { startStation, endStation, date } = req.body;
-        console.log(req.session)
-	  Group.create({startStation, endStation, date}).then(()=> 
-      {console.log("test");
-      res.redirect('/groups/mygroups')
+        console.log(req.session.user)
+        const owner = req.session.user._id
+	  Group.create({startStation, endStation, date, owner}).then(()=> {
+
+        res.redirect('/groups/mygroups')
 	})
 
 	.catch(err => {next(err)
@@ -29,7 +33,10 @@ router.post('/', (req, res) =>{
 
 router.get('/mygroups', (req, res, next) => {
     console.log ('tried to open redirect')
-    res.render('groups/mygroups.hbs')
+    Group.find({ owner : req.session.user._id}).then((groups)=> {
+        res.render('groups/mygroups.hbs', {groups})
+    })
+    
 });
 
 
