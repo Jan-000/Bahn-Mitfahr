@@ -1,9 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@400;600;700&display=swap');
 
-/* body {
-  
+body {
+
+
   padding: 50px;
-  font-family: 'IBM Plex Sans Condensed', sans-serif;
+  font-family: 'IBM Plex Sans Condensed';
   font: 14px;
   background-color: rgb(207, 207, 207);
   font-style: conde
@@ -28,6 +29,8 @@ input {
   width: 300px;
   float: right;
   clear: both;
+  font-weight: 600;
+
 }
 
 
@@ -35,4 +38,5 @@ input {
 button {
 background-color: rgb(170, 170, 170);
 border-style: none;
-} */
+font-weight: 600;
+}
