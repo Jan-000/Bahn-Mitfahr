@@ -5,6 +5,12 @@
   <p>Hello, {{firstName}}. Here are all your information stored and you can edit them by clicking on "edit"</p>
 
 {{!-- populate with data --}}
+<p> Full name:{{firstName}} {{lastName}} </p>
+<p> Mail adresse/ account name: {{email}} </p>
+{{/with}}
+<p> Credit card: **** **** {{lastDigit}}</p> 
+// before password change asking for pw again
+<p><a href="">Change password</a></p>
 
 
 
@@ -12,5 +18,3 @@
   <button>
     <a href="/userprofile">Reload the page</a>
   </button>
-
-{{/with}}

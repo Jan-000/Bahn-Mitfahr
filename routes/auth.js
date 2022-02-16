@@ -143,9 +143,17 @@ if (!date) {
 router.get("/userprofile", (req, res, next) => {
 console.log(req.session.user)
   const user = req.session.user
-  res.render("userprofile", { user: user })
+  // const lastDigit = req.session.user.creditcard.substring(-4)
+  console.log(req.session.user.creditcard.toString().length)
+  // const lastDigit = req.session.user.creditcard
+const lastDigit = req.session.user.creditcard.toString().substring(req.session.user.creditcard.toString().length-4)
+// const lastNumb 
+  res.render("userprofile", { user: user, lastDigit: lastDigit})
   });
  
+  // USERPAGE Page UPDATE
+
+  
 
 
 module.exports = router;
