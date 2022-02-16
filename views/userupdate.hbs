@@ -2,23 +2,24 @@
 {{#with user}}
   <h2 class="username">{{ firstName }} {{ lastName }}</h2>
 
-  <form>Hello, {{firstName}}. Edit your information and dont forget to save!</form>
+  <p>Hello, {{firstName}}. Edit your inlabelation and dont forget to save!</p>
 
-
-<form>First Name: <input name="firstName" type="text" value="{{firstName}}"> </form> 
-<form>Last Name: <input name="lastName" type="text" value="{{lastName}}"> </form>
-<form>Mail adresse/ account name: <input name="email" type="text" value="{{email}}"> </form>
+<form action="/auth/userupdate" method="post">
+<label>Last Name: <input name="lastName" type="text" value="{{lastName}}"> </label>
+<label>First Name: <input name="updatefirstName" type="text" value="{{firstName}}"> </label> 
+<label>Mail adresse/ account name: <input name="email" type="text" value="{{email}}"> </label>
 {{/with}}
 
 
-{{!-- <form> Credit card: </form> 
+{{!-- <label> Credit card: </label> 
 
-<form><a href="">Change password</a></form> --}}
+<label><a href="">Change password</a></label> --}}
 
 
-<button type="submit">Update
+<button type="submit" >Update
 </button>
 
   <button>
     <a href="/auth/userprofile">Return without saving</a>
   </button>
+</form>
