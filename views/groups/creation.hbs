@@ -1,4 +1,4 @@
-<h2>placeholder creation page</h2>
+<h2>Create your group!</h2>
 
 
 <form action="/groups" method="POST"\>
@@ -11,10 +11,13 @@
   <label for="date">Plot</label> 
   <input id="date" type="date" name="date">
 
- {{user}}
 
 
   <button type="submit">create this group</button>
 </form>
+<br><p><u>You are logged in as :</u><br>  
+ {{user}}
+</p>
+<p>Go to <a href="/groupsearchUrl">Group search</a></p>
 
  //to be added : departure and arrival times maybe via select, comments, maxP, 
