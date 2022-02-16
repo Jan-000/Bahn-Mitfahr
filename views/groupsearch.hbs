@@ -1,20 +1,16 @@
 <h1>Search group!</h1>
-<form action="/groupsearchUrl" method = "GET">
+<form action="/groups/groupsearchUrl" method = "POST">
    <label for="From">From :</label>
-   <input type="text" name="" required>
+   <input type="text" name="startStation">
    <br>
    <br>
     <label for="To">To :</label>
-    <input type="text" name="" required>
+    <input type="text" name="endStation">
     <br>
    <br>
     <label for="Date">Date :</label>
-    <input type="date" name="">
+    <input type="date" name="date">
     <br>
-   <br>
- <label for="Time">Time :</label>
-<input type="time" id="appt" name="appt" required>
-<br>
    <br>
     <button type="submit">Search!</button>
 
