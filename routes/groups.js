@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-//const User = require('../models/User');
-//const Group = require('../models/Group');
+const User = require('../models/User');
+const Group = require('../models/Group');
 
 router.get('/create', (req, res, next) => {
     res.render('groups/creation.hbs')
@@ -9,11 +9,22 @@ router.get('/create', (req, res, next) => {
 
 
 
+//take us to the view of "my groups"
+router.post('/', (req, res) =>{
+    
 
-router.post('/', (req, res, next) =>{
+	const { startStation, endStation, date } = req.body;
+        console.log(req.session)
+	  Group.create({startStation, endStation, date}).then(()=> 
+      {console.log("test");
+      res.redirect('/groups/mygroups')
+	})
+
+	.catch(err => {next(err)
+    });
     
-    res.redirect('/groups/mygroups')
-    
+    // res.redirect('/groups/mygroups')
+     
 });
 
 router.get('/mygroups', (req, res, next) => {
