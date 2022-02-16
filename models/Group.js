@@ -7,14 +7,8 @@ const groupSchema = new Schema({
   startStation: String,
   endStation: String,
   date: Date,
-  startTime: {
-    minute : Number,
-    hour: Number,
-  },
-  endTime: {
-    minute : Number,
-    hour: Number,
-  },
+  
+  
   maxPassengers: Number,
   owner: {
       type: Schema.Types.ObjectId,
