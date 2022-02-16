@@ -3,7 +3,7 @@ const router = require("express").Router();
 // ℹ️ Handles password encryption
 const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
-
+const User = require("../models/User")
 
 // How many rounds should bcrypt run the salt (default [10 - 12 rounds])
 const saltRounds = 10;
@@ -20,12 +20,10 @@ router.get("/signup", (req, res) => {
 });
 
 
-router.post("/signup", (req, res) => {
+router.post("/signup", (req, res, next) => {
   const { email, password } = req.body;
   console.log(req.body)
   
-  res.redirect('/groupsearchUrl')
-
 
   // if (!email) {
   //    res
@@ -34,12 +32,17 @@ router.post("/signup", (req, res) => {
   //     return
   // }
 
-  // if (password.length <= 7) {
-  //    res.status(400).render("auth/signup", {
-  //     errorMessage: "Your password needs to be at least 8 characters long.",
+  // if (password.length < 6) {
+  //    render("auth/signup", { errorMessage: "Your password needs to be at least 6 characters long.",
   //   })
   //   return;
   // }
+  // User.create({ username, password })
+	// 				.then(createdUser => {
+	// 					console.log(createdUser)
+	// 					res.redirect('/login')
+	// 				})
+	// 				.catch(err => next(err))
 
   //   ! This use case is using a regular expression to control for special characters and min length
   /*
@@ -101,65 +104,44 @@ router.post("/signup", (req, res) => {
 //________________________________________________________________________________________
 
 // LOGIN
-router.get("/login", isLoggedOut, (req, res) => {
-  res.render("auth/login");
+
+router.get('/login', (req, res, next) => {
+	res.render('auth/login')
 });
 
-router.post("/login", (req, res, next) => {
-  const { email, password } = req.body;
-  console.log(email)
-  if (!email) {
-    return res
-      .status(400)
-      .render("auth/login", { errorMessage: "Please provide your email." });
-  }
-
-  // Here we use the same logic as above
-  // - either length based parameters or we check the strength of a password
-  if (password.length < 8) {
-    return res.status(400).render("auth/login", {
-      errorMessage: "Your password needs to be at least 8 characters long.",
-    });
-  }
-
-  // Search the database for a user with the email submitted in the form
-  User.findOne({ email })
-    .then((user) => {
-      // If the user isn't found, send the message that user provided wrong credentials
-      if (!user) {
-        return res
-          .status(400)
-          .render("auth/login", { errorMessage: "Wrong credentials." });
-      }
-
-      // If user is found based on the email, check if the in putted password matches the one saved in the database
-      bcrypt.compare(password, user.password).then((isSamePassword) => {
-        if (!isSamePassword) {
-          return res
-            .status(400)
-            .render("auth/login", { errorMessage: "Wrong credentials." });
-        }
-        req.session.user = user;
-        // req.session.user = user._id; // ! better and safer but in this case we saving the entire user object
-        return res.redirect("/");
-      });
-    })
-
-    .catch((err) => {
-      next(err);
-       return res.status(500).render("login", { errorMessage: err.message });
-    });
+router.post('/login', (req, res, next) => {
+	const { email, password } = req.body
+console.log("LoginAttempt")
+	// do we have a user with that email
+	User.findOne({ email: email })
+		.then(userFromDB => {
+			console.log('user: ', userFromDB)
+			if (userFromDB === null) {
+				// this user does not exist
+				res.render('auth/login', { message: 'Invalid credentials' })
+				return
+			}
+			// email is correct 
+			// we check the password against the hash in the database
+		//=========> pw match request with and without hashing
+      //	if (bcrypt.compareSync(password, userFromDB.password)) {
+				if (password, userFromDB.password) {
+      console.log('authenticated')
+				// it matches -> credentials are correct
+				// we log the user in
+				// req.session.<some key (normally user)>
+				req.session.user = userFromDB
+				console.log(req.session)
+				// redirect to the profile page
+				res.redirect('/auth/userprofile')
+			}
+		})
 });
 
-router.get("/logout", isLoggedIn, (req, res) => {
-  req.session.destroy((err) => {
-    if (err) {
-      return res
-        .status(500)
-        .render("auth/logout", { errorMessage: err.message });
-    }
-    res.redirect("/");
-  });
+router.get('/logout', (req, res, next) => {
+	// to log the user out we destroy the session
+	req.session.destroy()
+	res.render('index')
 });
 //________________________________________________________________________________________
 
@@ -188,22 +170,16 @@ if (!date) {
 //________________________________________________________________________________________
 
 // USERPAGE Page
-router.get("/userprofile", isLoggedOut, (req, res, next) => {
-  res.render("auth/login")
-})
+// router.get("/userprofile", isLoggedOut, (req, res, next) => {
+//   res.render("auth/login")
+// })
 
-router.get("/userprofile", isLoggedIn, (req, res, next) => {
-User.findOne({ username })
-  .then((user) => {
-    req.session.user = user;
-    return res.render("userprofile/:_id")
-
-  })
-  .catch((err) => {
-    next(err);
-     return res.status(500).render("auth/login", { errorMessage: err.message });
+router.get("/userprofile", (req, res, next) => {
+console.log(req.session.user)
+  const user = req.session.user
+  res.render("userprofile", { user: user })
   });
-})
+ 
 
 
 module.exports = router;
