@@ -143,17 +143,36 @@ if (!date) {
 router.get("/userprofile", (req, res, next) => {
 console.log(req.session.user)
   const user = req.session.user
-  // const lastDigit = req.session.user.creditcard.substring(-4)
   console.log(req.session.user.creditcard.toString().length)
-  // const lastDigit = req.session.user.creditcard
+  // only showing the last four digits
 const lastDigit = req.session.user.creditcard.toString().substring(req.session.user.creditcard.toString().length-4)
 // const lastNumb 
   res.render("userprofile", { user: user, lastDigit: lastDigit})
   });
  
-  // USERPAGE Page UPDATE
+  // USERUPDATE / edit and update profile
+
+router.get("/userupdate", (req, res, next) => {
+    const user = req.session.user
+
+    res.render("userupdate", {user: user})
+ })
+
+router.post("/userupdate", (req, res, next) => {
 
   
+  const { lastName, firstName, email} = req.body;
+console.log(req.body)
+console.log('gets updated')
+
+
+// const user = req.session.user
+ User.update({firstName: firstName},{$set : {firstName : 'value'}})
+// if (err) throw err;
+// console.log("1 document updated");
+// db.close();
+//  })
+})
 
 
 module.exports = router;
