@@ -3,6 +3,8 @@ const router = express.Router();
 const User = require('../models/User');
 const Group = require('../models/Group');
 
+
+
 router.get('/create', (req, res, next) => {
     User.findById(req.session.user._id).then(user=>{res.render('groups/creation.hbs', {user})
     })
@@ -47,11 +49,20 @@ router.post('/groupsearchUrl', (req, res, next) => {
 
         res.render('groups/groupresult.hbs', {groups})
     })
-    
-
 });
 
 
+router.get("/joingroup", (req, res, next) => {
+    console.log("joingroup route was initiated");
+  });
+
+
+
+// router.get('/joingroup', (req, res, next) => {
+//     console.log(req.body)
+//   //  const { guests } = [1,2,3];
+//   res.render('groups/mygroups.hbs')
+// })
 
 
 module.exports = router;
