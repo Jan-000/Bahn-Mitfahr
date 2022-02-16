@@ -14,14 +14,19 @@ const groupSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: User,
   },
-  guests: [
+  guests: [ 
     {
       type: Schema.Types.ObjectId,
       ref: User,
     }
   ],
-  comments: String
-}, {
+  comments: String,
+  numOfGuests: {
+    type: Number,
+    default : 1
+  }
+},
+{
   timestamps: {
     createdAt: 'created_at',
     updatedAt: 'updated_at'
