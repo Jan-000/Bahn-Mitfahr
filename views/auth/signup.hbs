@@ -1,19 +1,19 @@
 
  <form action="/auth/signup" method="POST">
    <label> Surname
-      <input type="text" name="username" placeholder="your family name">
+      <input type="text" name="surname" placeholder="your family name">
    </label>
    <br>
    <label> Name
-      <input type="text" name="username" placeholder="first name">
+      <input type="text" name="name" placeholder="first name">
    </label>
    <br>
-   <label> Username
-      <input type="text" name="username" placeholder="sry, 'admin' is alreay taken 🙄">
+   <label> Email  
+      <input type="email" name="email" placeholder="sry, 'admin' is alreay taken 🙄">
    </label>
 <br>
    <label> credit card
-      <input type="text" name="password" placeholder="at least 8 characters!">
+      <input type="text" name="creditcard" placeholder="at least 8 characters!">
    </label>
 <br>
    <label> Password
@@ -30,7 +30,7 @@
     temp.type = "text"; } else { temp.type = "password"; } }
   </script>
 
-</form>
+
    <button type="submit">Submit</button>
 </form>
 
