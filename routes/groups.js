@@ -33,7 +33,10 @@ router.post('/', (req, res) =>{
 
 router.get('/mygroups', (req, res, next) => {
     console.log ('tried to open redirect')
-    res.render('groups/mygroups.hbs')
+    Group.find({ owner : req.session.user._id}).then((groups)=> {
+        res.render('groups/mygroups.hbs', {groups})
+    })
+    
 });
 
 
