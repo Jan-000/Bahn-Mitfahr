@@ -21,29 +21,42 @@ router.get("/signup", (req, res) => {
 
 
 router.post("/signup", (req, res, next) => {
-  const { email, password } = req.body;
+  const { lastName, firstName, email, creditcard, password} = req.body;
   console.log(req.body)
   
 
-  // if (!email) {
-  //    res
-  //     .status(400)
-  //     .render("auth/signup", { errorMessage: "Please provide your email." });
-  //     return
-  // }
+  if (!email) {
+     res.render("auth/signup", { errorMessage: "Please provide your email." });
+      return
+  }
 
-  // if (password.length < 6) {
-  //    render("auth/signup", { errorMessage: "Your password needs to be at least 6 characters long.",
-  //   })
-  //   return;
-  // }
-  // User.create({ username, password })
-	// 				.then(createdUser => {
-	// 					console.log(createdUser)
-	// 					res.redirect('/login')
-	// 				})
-	// 				.catch(err => next(err))
+  if (password.length < 6) {
+     res.render("auth/signup", { errorMessage: "Your password needs to be at least 6 characters long.",
+    })
+    return;
+  }
+	// User.findOne({ email: email })
+	// 	.then(userFromDB => {
+	// 		if (userFromDB !== null) {
+	// 			res.render('auth/signup', { message: 'Username is alredy taken' })
+	// 		} else {
+				// we can use that username
+				// and hash the password
+				const salt = bcrypt.genSaltSync()
+				const hash = bcrypt.hashSync(password, salt)
+				// create the user
+  
+  User.create({ lastName, firstName, email, creditcard, password : hash})
 
+  //creates user
+  .then(createdUser => {
+    console.log(createdUser)
+    res.redirect('/auth/login')
+  })
+  .catch(err => next(err))
+})
+
+        
   //   ! This use case is using a regular expression to control for special characters and min length
   /*
   const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
@@ -100,7 +113,7 @@ router.post("/signup", (req, res, next) => {
   //         .render("auth/signup", { errorMessage: error.message });
   //     });
   // });
-});
+// });
 //________________________________________________________________________________________
 
 // LOGIN
@@ -121,11 +134,9 @@ console.log("LoginAttempt")
 				res.render('auth/login', { message: 'Invalid credentials' })
 				return
 			}
-			// email is correct 
+			// email is correct =>
 			// we check the password against the hash in the database
-		//=========> pw match request with and without hashing
-      //	if (bcrypt.compareSync(password, userFromDB.password)) {
-				if (password, userFromDB.password) {
+				if (bcrypt.compareSync(password, userFromDB.password)) {
       console.log('authenticated')
 				// it matches -> credentials are correct
 				// we log the user in

@@ -2,10 +2,10 @@ const { Schema, model } = require("mongoose");
 
 const userSchema = new Schema(
   {
-    userName: {
-      type: String,
-      unique: true,
-    },
+    // userName: {
+    //   type: String,
+    //   // unique: true,
+    // },
     password: String,
     firstName: {
       type: String,
@@ -19,6 +19,7 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    creditcard: Number,
     rating: Number,
     profilePicture: String,
     role: String // to be able to assign admins who can delete every group
