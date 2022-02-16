@@ -35,11 +35,11 @@ router.post("/signup", (req, res, next) => {
     })
     return;
   }
-	// User.findOne({ email: email })
-	// 	.then(userFromDB => {
-	// 		if (userFromDB !== null) {
-	// 			res.render('auth/signup', { message: 'Username is alredy taken' })
-	// 		} else {
+	User.findOne({ email: email })
+		.then(userFromDB => {
+			if (userFromDB !== null) {
+				res.render('auth/signup', { errorMessage: 'Email is already taken' })
+			} else {
 				// we can use that username
 				// and hash the password
 				const salt = bcrypt.genSaltSync()
@@ -54,8 +54,8 @@ router.post("/signup", (req, res, next) => {
     res.redirect('/auth/login')
   })
   .catch(err => next(err))
+}})
 })
-
         
   //   ! This use case is using a regular expression to control for special characters and min length
   /*
@@ -69,51 +69,6 @@ router.post("/signup", (req, res, next) => {
   }
   */
 
-  // // Search the database for a user with the email submitted in the form
-  // email.findOne({ email })
-  // .then((found) => {
-  //   // If the email is found, send the message email is taken
-  //   if (found) {
-  //      res
-  //       .status(400)
-  //       .render("auth/signup", { errorMessage: "email already taken." });
-  //       return}
- 
-  //   // if user is not found, create a new user - start with hashing the password
-  //   return bcrypt
-  //     .genSalt(saltRounds)
-  //     .then((salt) => bcrypt.hash(password, salt))
-  //     .then((hashedPassword) => {
-  //       // Create a user and save it in the database
-  //       console.log("password gets hashed");
-  //        User.create({
-  //         email,
-  //         password: hashedPassword,
-  //       });
-  //     })
-  //     .then((user) => {
-  //       // Bind the user to the session object
-  //       req.session.user = user;
-  //       res.redirect("/");
-  //     })
-  //     .catch((error) => {
-  //       if (error instanceof mongoose.Error.ValidationError) {
-  //         return res
-  //           .status(400)
-  //           .render("auth/signup", { errorMessage: error.message });
-  //       }
-  //       if (error.code === 11000) {
-  //         return res.status(400).render("auth/signup", {
-  //           errorMessage:
-  //             "email need to be unique. The email you chose is already in use.",
-  //         });
-  //       }
-  //       return res
-  //         .status(500)
-  //         .render("auth/signup", { errorMessage: error.message });
-  //     });
-  // });
-// });
 //________________________________________________________________________________________
 
 // LOGIN
@@ -131,7 +86,7 @@ console.log("LoginAttempt")
 			console.log('user: ', userFromDB)
 			if (userFromDB === null) {
 				// this user does not exist
-				res.render('auth/login', { message: 'Invalid credentials' })
+				res.render('auth/login', { errorMessage: 'Invalid credentials' })
 				return
 			}
 			// email is correct =>
