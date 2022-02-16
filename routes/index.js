@@ -8,7 +8,7 @@ router.get("/", (req, res, next) => {
 module.exports = router;
 
 
-/*route for group searching*/
+/*route displaying the group-search*/
 router.get("/groupsearchUrl", (req, res) => {
   res.render("groupsearch");
 });
