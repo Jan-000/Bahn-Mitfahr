@@ -6,7 +6,8 @@ body {
   padding: 50px;
   font-family: 'IBM Plex Sans Condensed';
   font: 14px;
-  background-color: rgb(207, 207, 207);
+  /* background-color: rgb(207, 207, 207); */
+  background-image: src="https://images.pexels.com/photos/298018/pexels-photo-298018.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260";
   font-style: conde
   }
 
