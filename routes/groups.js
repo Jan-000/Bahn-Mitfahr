@@ -54,8 +54,16 @@ router.post('/groupsearchUrl', (req, res, next) => {
 
 router.get("/joingroup", (req, res, next) => {
     console.log("joingroup route was initiated");
+
   });
 
+router.get('/:id/delete', (req, res, next) => {
+    console.log ('delete route for id ', req.params.id)
+    Group.findByIdAndDelete(req.params.id).then (()=>{
+        res.redirect('/groups/mygroups')
+    })
+    .catch (err => {next(err)})
+});
 
 
 // router.get('/joingroup', (req, res, next) => {
