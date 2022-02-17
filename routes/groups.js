@@ -14,6 +14,8 @@ router.get('/create', (req, res, next) => {
 
 
 
+
+
 //take us to the view of "my groups"
 router.post('/', (req, res) =>{
     
@@ -64,6 +66,7 @@ const user = req.session.user;
        // console.log("this is group", group);
         console.log("dit is reqsession id", user, group);
       //group.numOfGuests++
+      res.render('groups/userjoinstrip')
        
   });
 });
@@ -76,6 +79,8 @@ router.get('/:id/delete', (req, res, next) => {
     })
     .catch (err => {next(err)})
 });
+
+
 
 
 // router.get('/joingroup', (req, res, next) => {
