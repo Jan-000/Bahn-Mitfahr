@@ -1,25 +1,73 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@400;600;700&display=swap');
+ html {
+  /* The image used */
+  background-image: url("https://images.pexels.com/photos/298018/pexels-photo-298018.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
 
+  /* Full height */
+  height: 100%;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+}
 body {
-  padding: 50px;
+  background-color: rgba(153, 133, 133, 0.63);
+  /* border: 0px 2px;
+  border-color: coral; */
+  padding: 50px 50px 100vh 50px;
+  margin: 0% 10%;
   font-family: 'IBM Plex Sans Condensed';
-  font: 14px;
-  /* background-color: rgb(207, 207, 207); */
-  background-image: src="https://images.pexels.com/photos/298018/pexels-photo-298018.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260";
-  font-style: conde
+  font: 18px;
+  font-style: conde;
+  z-index: -1;
   }
 
+.navbar-expand-lg, 
+.navbar-light, 
+.bg-light{
+  border-radius: 20px;
+}
+.dropdown-menu {
+  background-image: url("https://images.pexels.com/photos/4542835/pexels-photo-4542835.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+  /* background-attachment: fixed; */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: rgba(23, 90, 179, 0.63);
+  margin: 0% 10%;
+  /* opacity: 0.2; */
+  color: #000000fd;
+}
+.dropdown-item {
+  color: #000000fd;
+  text-shadow: 0 0 6px white,0 0 8px white, 0 0 1px rgba(133, 12, 12, 0.2);
+  font: 16px;
+  opacity: 1;
+}
+#subtitle-fp {
+ 
+}
+#title-fp {
+  padding: 20px 0px 0px 0px;
+}
+
+.main-button{
+  border-radius: 25px;
+  padding: 3px 15px;
+  margin: 10px;
+  justify-content: center;
+  align-items: center;
+}
 a {
-  color: #00b7ff;
+  color: #006de9;
+  text-decoration: none;
 }
 
 h1, h2, h3 {
   size: 15px;
-}
-
-h1 {
-  size: 15px;
-  font-weight: 600;
 }
 
 form {
@@ -40,7 +88,26 @@ input {
 
 
 button {
-background-color: rgb(170, 170, 170);
+background-color: rgb(238, 238, 238);
 border-style: none;
 font-weight: 600;
+}
+
+#form {
+  text-align: left;
+}
+form-label{
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.divBackgroundImage {
+
+  background-image: url(https://images.unsplash.com/photo-1611952327549-3120cfd88d96?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80);
+  background-repeat: no-repeat;
+  background-size: 100vw;
+  height: 100vh;
+  text-align: center;
+  color:white;
 }
