@@ -180,5 +180,15 @@ console.log('gets updated')
 res.render("userupdate", {user: user})
 })
 
+router.get('/delete', (req, res, next) => {
+  console.log('tried to delete User')
+  //later feature delete groups owned by this user as well
+  User.findByIdAndDelete(req.session.user).then(()=>{
+    //destroy session and delete database entry
+    req.session.destroy()
+    res.redirect('/auth/signup')
+  })
+});
+
 
 module.exports = router;
