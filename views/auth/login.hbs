@@ -26,12 +26,12 @@
   <button type="submit" value="Login" >Let me in!</button>
          
 
-  <p>No account yet? No problem! Go here to <a href="/auth/signup">signup</a> and find a groupp or found one on your own 👥🚋</p>
+  <p>No account yet? No problem!</p>
+  <button type="submit"><a href="/auth/signup">Signup here!</a></button> 
+  <p>Find a groupp or start one on your own 👥🚋</p>
 
     {{#if errorMessage}} 
       <p class="error">{{errorMessage}}</p>
     {{/if}}
   </form>
-   <br><br><p>Otherwise, register an account!</p>
-    <button type="submit"><a href="/auth/signup">Signup!</a></button>
 </div>
