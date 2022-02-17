@@ -45,12 +45,11 @@ router.get('/mygroups', (req, res, next) => {
 //results of group search
 router.post('/groupsearchUrl', (req, res, next) => {
     //console.log ('tried to open redirect')
-    const price = [42.00, 24.50, 18.66, 15.75, 14.00]
     const { startStation, endStation, date } = req.body;
     Group.find({ startStation }).then((groups)=> {
         console.log("LOL IT WORKED")
 
-        res.render('groups/groupresult.hbs', {groups}, price)
+        res.render('groups/groupresult.hbs', {groups})
     })
 });
 
