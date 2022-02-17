@@ -187,7 +187,7 @@ router.get('/delete', (req, res, next) => {
   User.findByIdAndDelete(req.session.user).then(()=>{
     //destroy session and delete database entry
     req.session.destroy()
-    res.redirect('/')
+    res.redirect('/auth/signup')
   })
 });
 //____________________________________
@@ -197,7 +197,7 @@ router.get('/logout', (req, res, next) => {
   console.log('log out the user ')
     //destroy session and wont be recognize by server
     req.session.destroy()
-    res.redirect('/auth/signup')
+    res.redirect('/')
   })
 //____________________________________
 
