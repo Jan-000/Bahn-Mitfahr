@@ -143,7 +143,8 @@ if (!date) {
 router.get("/userprofile", (req, res, next) => {
 console.log(req.session.user)
   const user = req.session.user
-  console.log(req.session.user.creditcard.toString().length)
+  console.log(user)
+  // console.log(req.session.user.creditcard.toString().length)
   // only showing the last four digits
 const lastDigit = req.session.user.creditcard.toString().substring(req.session.user.creditcard.toString().length-4)
 // const lastNumb 
@@ -160,22 +161,26 @@ router.get("/userupdate", (req, res, next) => {
 
 router.post("/userupdate", (req, res, next) => {
   const {lastName, firstName, email}  = req.body;
-
+  // req.body.user.firstName = firstName
+  // req.body.user.lastName = lastName
+  // req.body.user.email = email 
+ 
 console.log(req.body)
 
-User.findByIdAndUpdate(req.session.user, { lastName, firstName, email, new: true} )
+User.findByIdAndUpdate(req.session.user._id, { lastName, firstName, email}, {new: true} )
 // User.findByIdAndUpdate(req.session.user, { lastName: req.body.lastName}, {firstName: req.body.firstName}, {email:req.body.email })
 .then((user) => {
 console.log('gets updated')
-// req.session.user
+req.session.user = user
 
-res.redirect('userprofile')
+res.redirect('/auth/userprofile')
 })
 .catch(err => { 
   next(err);
 })
 })
 
+// DELETE
 router.get('/delete', (req, res, next) => {
   console.log('tried to delete User')
   //later feature delete groups owned by this user as well
