@@ -27,20 +27,20 @@
         </li>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/auth/logout">Logout</a>
-        </li>
-         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="https://www.rzd.ru/ru/9269">.RU</a>
+        </li>     
+         <li class="nav-item nav-link active" aria-current="page" >
+         You are logged as :<b>  
+        {{user.email}}</b>
         </li>      
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Settings
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="#">Edit profile</a></li>
-            <li><a class="dropdown-item" href="#">Your groups</a></li>
-            <li><a class="dropdown-item" href="#">Travel history</a></li>
-            <li><a class="dropdown-item" href="#">Information</a></li>
-            <li><a class="dropdown-item" href="#">Help</a></li>
+            <li><a class="dropdown-item" href="/auth/userupdate">Edit profile</a></li>
+            <li><a class="dropdown-item" href="/groups/mygroups">Your groups</a></li>
+            <li><a class="dropdown-item" href="https://github.com/Jan-000/MitBahn">Information</a></li>
+            <li><a class="dropdown-item" href="https://www.ironhack.com/de/berlin?utm_medium=cpc&utm_source=google&utm_campaign=BER_Germany_Berlin_Global_Search_Brand_DE&utm_term=ironhack%20berlin&utm_content=search-brand">Need help? Call the TA!</a></li>
           </ul>
         </li>
       </ul>
