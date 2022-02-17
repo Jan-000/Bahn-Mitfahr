@@ -14,6 +14,10 @@ const isLoggedIn = require("../middleware/isLoggedIn");
 const res = require("express/lib/response");
 const { findById } = require("../models/User");
 
+// GETROURE'S here
+
+//____________________
+
 // SIGNUP
 router.get("/signup", (req, res) => {
   res.render("auth/signup");
@@ -191,15 +195,17 @@ router.get('/delete', (req, res, next) => {
   })
 });
 //____________________________________
+
+// MYGROUPS
 router.get('/groups/mygroups', (req, res, next) => {
   console.log('accessing users groups')
   //later feature delete groups owned by this user as well
-  const {date, startStation, endStation} = req.body;
+  // const {date, startStation, endStation} = req.body;
   User.findById(req.session.user).then(()=>{
     //destroy session and delete database entry
     res.redirect('/groups/mygroups')
   })
 });
-// MYGROUPS
+//__________________________________________________________
 
 module.exports = router;
