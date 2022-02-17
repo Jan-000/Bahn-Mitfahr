@@ -42,7 +42,7 @@ router.get('/mygroups', (req, res, next) => {
 
 //results of group search
 router.post('/groupsearchUrl', (req, res, next) => {
-    console.log ('tried to open redirect')
+    //console.log ('tried to open redirect')
     const { startStation, endStation, date } = req.body;
     Group.find({ startStation }).then((groups)=> {
         console.log("LOL IT WORKED")
@@ -52,10 +52,22 @@ router.post('/groupsearchUrl', (req, res, next) => {
 });
 
 
-router.get("/joingroup", (req, res, next) => {
+router.get("/joingroup/:id", (req, res, next) => {
     console.log("joingroup route was initiated");
-
+    console.log("LOL", req.params.id);
+    console.log(req.params);
+const user = req.session.user;
+    const id = req.params.id;
+    Group.findByIdAndUpdate(id, { $push: { guests: user._id } },
+        { new: true })
+        .then(group => {
+       // console.log("this is group", group);
+        console.log("dit is reqsession id", user, group);
+      //group.numOfGuests++
+       
   });
+});
+
 
 router.get('/:id/delete', (req, res, next) => {
     console.log ('delete route for id ', req.params.id)

@@ -5,9 +5,9 @@
 <li>{{this.date}} from :
 <b>{{this.startStation}}</b> to :
 <b>{{this.endStation}}</b>
-<img src=`../../public/images/number_of_travellers/${{this.number_of_travellers}}.png`>
+<img src="../../public/images/number_of_travellers/{{this.numOfGuests}}.png">
 <br>
-<a href="/groups/joingroup"><u><b>Click to initiate "joingroup" route</b></u></a></li>
+<a href="/groups/joingroup/{{_id}}"><u><b>Click to initiate "joingroup" route</b></u></a></li>
 
 {{/each}}
 <br><br><p>Go to <a href="/groupsearchUrl">Group search</a></p>
