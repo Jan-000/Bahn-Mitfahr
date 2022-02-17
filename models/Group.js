@@ -24,7 +24,14 @@ const groupSchema = new Schema({
   numOfGuests: {
     type: Number,
     default : 1
-  }
+  },
+  prices : {
+    1:"42 Euro", 
+    2:"24,50 Euro",
+    3:"18,66 Euro", 
+    4:"15,75 Euro",
+    5:"14 Euro"
+  },
 },
 {
   timestamps: {
