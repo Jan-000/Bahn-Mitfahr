@@ -60,7 +60,7 @@ router.get("/joingroup/:id", (req, res, next) => {
     console.log(req.params);
 const user = req.session.user;
     const id = req.params.id;
-    Group.findByIdAndUpdate(id, { $push: { guests: user._id } },
+    Group.findByIdAndUpdate(id, { $push: { guests: user._id }}, {$inc: {numOfGuests: +1}},
         { new: true })
         .then(group => {
        // console.log("this is group", group);
