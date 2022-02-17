@@ -42,7 +42,7 @@ router.get('/mygroups', (req, res, next) => {
 
 //results of group search
 router.post('/groupsearchUrl', (req, res, next) => {
-    console.log ('tried to open redirect')
+    //console.log ('tried to open redirect')
     const { startStation, endStation, date } = req.body;
     Group.find({ startStation }).then((groups)=> {
         console.log("LOL IT WORKED")

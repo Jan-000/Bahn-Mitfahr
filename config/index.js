@@ -49,7 +49,22 @@ module.exports = (app) => {
   app.use(
     favicon(path.join(__dirname, "..", "public", "images", "favicon.ico"))
   );
+//local environment for testing
+  // app.use(
+  //   session({
+  //     secret: process.env.SESSION_SECRET || "keyboard cat",
+  //     resave: true,
+  //     saveUninitialized: false,
+  //     cookie: {
+  //       sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+  //       secure: process.env.NODE_ENV === 'production',
+  //       httpOnly: true,
+  //       maxAge: 60000 * 60 // == 1 h
+  //     }
+  //   })
+  // )};
 
+  //  for deployment on server
   app.use(
     session({
       secret: process.env.SESSION_SECRET,
