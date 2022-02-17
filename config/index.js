@@ -50,41 +50,14 @@ module.exports = (app) => {
     favicon(path.join(__dirname, "..", "public", "images", "favicon.ico"))
   );
 
-  // ℹ️ Middleware that adds a "req.session" information and later to check that you are who you say you are 😅
-//   app.use(
-//     session({
-//       secret: process.env.SESSION_SECRET || "keyboard cat",
-//       resave: false,
-//       saveUninitialized: false,
-//       store: MongoStore.create({
-//         mongoUrl: MONGO_URI,
-//       }),
-//     })
-//   );
-// };
-// Require the user and Group model in order to interact with the database
-const User= require('../models/User')
-// const Group = require
-
-
-// handles session/cookies
-const session = require('express-session');
-module.exports = app;
-
-// required for the app when deployed to Heroku (in production)
-// User.set('trust proxy', 1);
-
-// using session
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET || "keyboard cat",
-    resave: true,
-    saveUninitialized: false,
-    cookie: {
-      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
-      secure: process.env.NODE_ENV === 'production',
-      httpOnly: true,
-      maxAge: 60000 * 60 // == 1 h
-    }      
-  })
-)};
+  app.use(
+    session({
+      secret: process.env.SESSION_SECRET,
+      cookie: { maxAge: 1000 * 60 * 60 * 24 },
+      resave: true,
+      store: MongoStore.create({
+        mongoUrl: process.env.MONGODB_URI
+      })
+    })
+  )
+}
