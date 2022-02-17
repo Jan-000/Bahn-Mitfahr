@@ -21,9 +21,52 @@ body {
   margin: 0% 10%;
   font-family: 'IBM Plex Sans Condensed';
   font: 18px;
+  font-weight: bold;
   font-style: conde;
   z-index: -1;
-  }
+}
+
+a {
+  color: #006de9;
+  text-decoration: none;
+}
+
+h1, h2, h3 {
+  size: 15px;
+}
+h1 {
+  padding: 10px 0 ;
+}
+
+form {
+  overflow: hidden;
+}
+
+input {
+  background-color: rgb(190, 190, 190);
+  border-style: none;
+  /* margin: 5px; */
+  width: 300px;
+  float: inline-end;
+  clear: both;
+  font-weight: 600;
+}
+
+label {
+
+}
+
+
+button {
+background-color: rgb(238, 238, 238);
+border-style: none;
+font-weight: 600;
+border-radius: 20px;
+padding: 5px 10px;
+}
+input {
+  border-radius: 4px;
+}
 
 .navbar-expand-lg, 
 .navbar-light, 
@@ -47,6 +90,26 @@ body {
   font: 16px;
   opacity: 1;
 }
+
+#easy {
+  font-size: 2em;
+  margin-top: 1em;
+  -webkit-animation: glowing 1s ease-in-out infinite alternate;
+  -moz-animation: glowing 1s ease-in-out infinite alternate;
+  animation: glowing 1s ease-in-out infinite alternate;
+}
+@-webkit-keyframes glowing {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px rgb(111, 0, 255), 0 0 40px rgb(0, 183, 255), 0 0 50px #007fe6, 0 0 60px #007fe6, 0 0 70px #007fe6;
+  }
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #6b2cfc, 0 0 40px #3e14fc, 0 0 50px #4d59ff, 0 0 60px #5f4dff, 0 0 70px #4da9ff, 0 0 80px #4da0ff;
+  }
+}
+#text-signup {
+  color: #002855;
+}
+
 #subtitle-fp {
  
 }
@@ -61,46 +124,17 @@ body {
   justify-content: center;
   align-items: center;
 }
-a {
-  color: #006de9;
-  text-decoration: none;
-}
-
-h1, h2, h3 {
-  size: 15px;
-}
-
-form {
-  overflow: hidden;
-}
-
-input {
-  background-color: rgb(190, 190, 190);
-  border-style: none;
-  margin: 5px;
-  width: 300px;
-  float: right;
-  clear: both;
-  font-weight: 600;
-
-}
-
-
-
-button {
-background-color: rgb(238, 238, 238);
-border-style: none;
-font-weight: 600;
-}
 
 #form {
   text-align: left;
 }
-form-label{
+.form-label{
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  margin: 0 20%;
 }
-
+.input-signup{
+}
 
 .divBackgroundImage {
 
@@ -110,4 +144,16 @@ form-label{
   height: 100vh;
   text-align: center;
   color:white;
+}
+
+/* USERUPDATE */
+
+.div-update {
+  padding: 5px;
+}
+
+/* USERPROFILE */
+
+#border {
+  border: 1px  solid black;
 }

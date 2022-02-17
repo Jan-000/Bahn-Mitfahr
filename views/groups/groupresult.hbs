@@ -5,10 +5,10 @@
 <li>{{this.date}} from :
 <b>{{this.startStation}}</b> to :
 <b>{{this.endStation}}</b> <br>
-There are currently<b> {{this.numOfGuests}}/5 </b>spots taken.
+<p id="group-text"> There are currently<b> {{this.numOfGuests}}/5 </b>spots taken.</p>
 With you everyone in this group would pay <b></b>.
 <br>
-<a href="/groups/joingroup/{{_id}}"><u><b>Click to initiate "joingroup" route</b></u></a></li>
+<button><a href="/groups/joingroup/{{_id}}"><u><b>Click to initiate "joingroup" route</b></u></a></li></button>
 
 {{/each}}
 <br><br><p>Go to <a href="/groupsearchUrl">Group search</a></p>

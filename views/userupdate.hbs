@@ -5,9 +5,9 @@
   <p>Hello, {{firstName}}. Edit your inlabelation and dont forget to save!</p>
 
 <form action="/auth/userupdate" method="POST">
-<label>Last Name: <input name="lastName" type="text" value="{{lastName}}"> </label>
-<label>First Name: <input name="firstName" type="text" value="{{firstName}}"> </label> 
-<label>Mail adresse/ account name: <input name="email" type="text" value="{{email}}"> </label>
+<div class="div-update"><label>Last Name:</label> <input name="lastName" type="text" value="{{lastName}}"> </div>
+<div class="div-update"><label>First Name:</label> <input name="firstName" type="text" value="{{firstName}}"> </div>
+<div class="div-update"><label>Mail adresse/ account name:</label> <input name="email" type="text" value="{{email}}"> </div>
 {{!-- <label>Credit card: <input name="creditcard" type="number" value="{{creditcard}}"> </label> --}}
 
 {{/with}}
@@ -17,11 +17,12 @@
 
 <label><a href="">Change password</a></label> --}}
 
-
+<div class="button-update">
 <button type="submit" >Update
 </button>
 
   <button>
     <a href="/auth/userprofile">Return without saving</a>
   </button>
+  </div>
 </form>
