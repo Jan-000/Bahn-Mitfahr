@@ -201,11 +201,11 @@ router.get('/groups/mygroups', (req, res, next) => {
   console.log('accessing users groups')
   //later feature delete groups owned by this user as well
   // const {date, startStation, endStation} = req.body;
-  User.findById(req.session.user).then(()=>{
+  // User.findById(req.session.user._id).then(()=>{
     //destroy session and delete database entry
     res.redirect('/groups/mygroups')
   })
-});
+// });
 //__________________________________________________________
 
 module.exports = router;
