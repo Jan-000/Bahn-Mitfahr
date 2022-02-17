@@ -159,25 +159,21 @@ router.get("/userupdate", (req, res, next) => {
  })
 
 router.post("/userupdate", (req, res, next) => {
+  const {lastName, firstName, email}  = req.body;
 
-  
-  const {firstName} = req.body;
 console.log(req.body)
+
+User.findByIdAndUpdate(req.session.user, { lastName, firstName, email, new: true} )
+// User.findByIdAndUpdate(req.session.user, { lastName: req.body.lastName}, {firstName: req.body.firstName}, {email:req.body.email })
+.then((user) => {
 console.log('gets updated')
+// req.session.user
 
-
- const user = req.session.user
- mongoose.Collection()
- mongoose.users.updateOne(
-  {firstName: firstName},
-  {$set: {firstName: updatefirstName}})
-// if (err) throw err;
-// console.log("1 document updated");
-// db.close();
-//  })
-
-
-res.render("userupdate", {user: user})
+res.redirect('userprofile')
+})
+.catch(err => { 
+  next(err);
+})
 })
 
 

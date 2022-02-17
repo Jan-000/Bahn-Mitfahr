@@ -4,12 +4,12 @@
 
   <p>Hello, {{firstName}}. Edit your inlabelation and dont forget to save!</p>
 
-<form action="/auth/userupdate" method="post">
+<form action="/auth/userupdate" method="POST">
 <label>Last Name: <input name="lastName" type="text" value="{{lastName}}"> </label>
-<label>First Name: <input name="updatefirstName" type="text" value="{{firstName}}"> </label> 
+<label>First Name: <input name="firstName" type="text" value="{{firstName}}"> </label> 
 <label>Mail adresse/ account name: <input name="email" type="text" value="{{email}}"> </label>
 {{/with}}
-
+ 
 
 {{!-- <label> Credit card: </label> 
 
