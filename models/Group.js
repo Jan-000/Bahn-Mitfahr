@@ -24,7 +24,8 @@ const groupSchema = new Schema({
   numOfGuests: {
     type: Number,
     default : 1
-  }
+  },
+  
 },
 {
   timestamps: {

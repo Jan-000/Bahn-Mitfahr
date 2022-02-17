@@ -66,8 +66,7 @@ const user = req.session.user;
        // console.log("this is group", group);
         console.log("dit is reqsession id", user, group);
       //group.numOfGuests++
-      res.render('groups/userjoinstrip')
-       
+      res.render('groups/userjoinstrip')       
   });
 });
 
