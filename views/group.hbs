@@ -1,1 +1,13 @@
-{{#with}}
+<h1>Group details:</h1>
+
+<ul>
+<li>
+    <span>{{this.date}}</span>
+<p>{{this.startStation}}</p>
+<p>{{this.endStation}}</p>
+</li>
+<a href="/groups/{{ this._id }}/delete">delete this group</a>
+</ul>
+
+<br><p>Go to <a href="/groupsearch">view of your group</a></p>
+<br><p>Go to <a href="/groupsearch">Group search</a></p>
