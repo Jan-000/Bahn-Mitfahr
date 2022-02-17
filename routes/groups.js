@@ -54,6 +54,7 @@ router.post('/groupsearchUrl', (req, res, next) => {
 
 router.get("/joingroup", (req, res, next) => {
     console.log("joingroup route was initiated");
+    
   });
 
 
