@@ -159,15 +159,11 @@ const lastDigit = req.session.user.creditcard.toString().substring(req.session.u
 
 router.get("/userupdate", (req, res, next) => {
     const user = req.session.user
-
     res.render("userupdate", {user: user})
  })
 
 router.post("/userupdate", (req, res, next) => {
   const {lastName, firstName, email}  = req.body;
-  // req.body.user.firstName = firstName
-  // req.body.user.lastName = lastName
-  // req.body.user.email = email 
  
 console.log(req.body)
 
@@ -197,12 +193,13 @@ router.get('/delete', (req, res, next) => {
 //____________________________________
 
 // MYGROUPS
-router.get('/groups/mygroups', (req, res, next) => {
+router.get('/mygroups', (req, res, next) => {
   console.log('accessing users groups')
   //later feature delete groups owned by this user as well
   // const {date, startStation, endStation} = req.body;
   // User.findById(req.session.user._id).then(()=>{
     //destroy session and delete database entry
+    const groups = req.session.groups
     res.redirect('/groups/mygroups')
   })
 // });
