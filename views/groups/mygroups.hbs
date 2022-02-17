@@ -1,14 +1,17 @@
+{{#with groups}}
 <h1>My groups :</h1>
 
 <ul>
 {{#each groups}}
 
-<li>{{this.date}}
-{{this.startStation}}
-{{this.endStation}}</li>
+<li>{{date}}
+{{startStation}}
+{{endStation}}</li>
 <a href="/groups/{{ this._id }}/delete">delete this group</a>
 {{/each}}
 
 </ul>
 
 <br><p>Go to <a href="/groupsearchUrl">Group search</a></p>
+
+{{/with}}
