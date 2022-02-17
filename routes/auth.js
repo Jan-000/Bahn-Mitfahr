@@ -81,6 +81,8 @@ router.get('/login', (req, res, next) => {
 	res.render('auth/login')
 });
 
+
+
 router.post('/login', (req, res, next) => {
 	const { email, password } = req.body
 console.log("LoginAttempt")
