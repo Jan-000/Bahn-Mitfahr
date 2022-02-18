@@ -1,14 +1,16 @@
 <br><h1>My groups :</h1>
-
+<br>
 <ul>
 {{#each groups}}
+
 
 <li class="group-list">
     <span>{{this.date}}</span>
 <p>{{this.startStation}}</p>
 <p>{{this.endStation}}</p>
+
 </li>
-<a href="/groups/{{ this._id }}/delete">delete this group</a>
+<a href="/groups/{{ this._id }}/delete">delete this group</a><br><br><br>
 {{/each}}
 
 </ul>
