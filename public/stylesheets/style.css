@@ -14,7 +14,7 @@
   text-align: center;
 }
 body {
-  background-color: rgba(153, 133, 133, 0.63);
+  background-color: rgba(228, 228, 228, 0.74);
   /* border: 0px 2px;
   border-color: coral; */
   padding: 50px 50px 100vh 50px;
@@ -50,6 +50,7 @@ input {
   float: inline-end;
   clear: both;
   font-weight: 600;
+  border-radius: 4px;
 }
 
 label {
@@ -63,9 +64,6 @@ border-style: none;
 font-weight: 600;
 border-radius: 20px;
 padding: 5px 10px;
-}
-input {
-  border-radius: 4px;
 }
 
 .navbar-expand-lg, 
@@ -157,3 +155,13 @@ input {
 #border {
   border: 1px  solid black;
 }
+
+/* MYGROUPS */
+
+.group-list {
+  margin: 10%;
+  display: flex;
+  direction: ;
+}
+
+?

@@ -5,8 +5,8 @@
 <li>{{this.date}} from :
 <b>{{this.startStation}}</b> to :
 <b>{{this.endStation}}</b> <br>
-There are currently<b> {{this.numOfGuests}}/5 </b>spots taken.
-With you everyone in this group would pay <b>{{lookup this.prices this.numOfGuests}}</b>.
+There are currently<b id="num-guest"> {{this.numOfGuests}}/5 </b>spots taken.
+With you everyone in this group would pay <b id="price">{{lookup this.prices this.numOfGuests}}</b>.
 <br>
 <button><a href="/groups/joingroup/{{_id}}"><u><b>Join this group!</b></u></a></li></button>
 
