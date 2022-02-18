@@ -54,7 +54,9 @@ input {
 }
 
 label {
-
+}
+li {
+  text-decoration: none;
 }
 
 
@@ -143,6 +145,9 @@ padding: 5px 10px;
   text-align: center;
   color:white;
 }
+.button-update {
+  margin: 10px;
+}
 
 /* USERUPDATE */
 
@@ -161,7 +166,23 @@ padding: 5px 10px;
 .group-list {
   margin: 10%;
   display: flex;
-  direction: ;
+ justify-content: center;
+ flex-direction: column;
 }
 
-?
+.double-d {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+.double-d > p {
+  text-align: center;
+  margin-right: 60px;
+}
+
+.button-mygroups {
+  display: flex;
+  justify-content: center;
+
+}

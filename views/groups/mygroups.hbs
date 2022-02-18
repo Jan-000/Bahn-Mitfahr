@@ -5,12 +5,24 @@
 
 <li class="group-list">
     <span>{{this.date}}</span>
+<div class="double-d"> 
+<h5>Departure: </h5>
 <p>{{this.startStation}}</p>
+</div>
+<div class="double-d">
+<h5>Destination: </h5>
 <p>{{this.endStation}}</p>
+</div>
 </li>
+<div class="button-mygroups">
+<button >
 <a href="/groups/{{ this._id }}/delete">delete this group</a>
+</button>
 {{/each}}
-
+</div>
+<div class="button-mygroups">
 </ul>
-
-<br><p>Go to <a href="/groupsearchUrl">Group search</a></p>
+<button>
+<br><p>Go to <br> <a href="/groupsearchUrl">Group search</a></p>
+</button>
+</div>
